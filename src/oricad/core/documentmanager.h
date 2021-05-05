@@ -1,0 +1,137 @@
+/*
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ * Copyright 2021 Simon Marynissen <marynissen.simon@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+#ifndef INCLUDED_ORICAD_CORE_DOCUMENTMANAGER
+#define INCLUDED_ORICAD_CORE_DOCUMENTMANAGER
+
+#include <oricad/core/concepts/component.h>
+#include <oricad/core/concepts/reducer.h>
+#include <oricad/core/document.h>
+#include <oricad/core/documentioservice.h>
+
+#include <immer/map.hpp>
+#include <lager/context.hpp>
+
+#include <string>
+
+namespace oricad {
+namespace core {
+
+struct SaveDocument;
+struct SaveDocumentAs;
+struct SaveDone;
+struct CloseDocument;
+struct OpenDocument;
+struct LoadDocument;
+struct LoadDone;
+struct NewDocument;
+
+struct DocumentManager;
+
+template <>
+struct Component<DocumentManager>
+{
+  using Model_t = DocumentManager;
+  using Action_t = std::variant<
+    SaveDocument, SaveDocumentAs, SaveDone, CloseDocument, OpenDocument,
+    LoadDocument, LoadDone, NewDocument>;
+  using Deps_t = lager::deps<DocumentIOService&>;
+  using Effect_t = lager::effect<Action_t, Deps_t>;
+  using Result_t = std::pair<Model_t, Effect_t>;
+  using Reducer_t = Reducer<Model_t, Result_t, Action_t>;
+
+  using Context_t = lager::context<Action_t, Deps_t>;
+};
+
+struct DocumentManager
+{
+  using DocumentId = int;
+  using Documents = immer::map<DocumentId, Document>;
+
+  Documents documents;
+  DocumentId activeDocumentId;
+
+  DocumentManager setDocument(DocumentId id, Document document);
+};
+
+
+struct SaveDocument
+{
+  DocumentManager::DocumentId id;
+
+
+  Component<DocumentManager>::Result_t operator()(DocumentManager);
+
+
+  Component<DocumentManager>::Effect_t saveTemporaryFileEffect();
+  Component<DocumentManager>::Effect_t
+  saveRegularFileEffect(std::string contents, std::string path);
+};
+
+struct SaveDocumentAs
+{
+  DocumentManager::DocumentId id;
+  std::optional<std::string> path;
+
+  Component<DocumentManager>::Result_t operator()(DocumentManager);
+};
+
+struct SaveDone
+{
+  DocumentManager::DocumentId id;
+
+  Component<DocumentManager>::Result_t operator()(DocumentManager);
+};
+
+struct CloseDocument
+{
+  DocumentManager::DocumentId id;
+
+  Component<DocumentManager>::Result_t operator()(DocumentManager);
+};
+
+struct NewDocument
+{
+  Component<DocumentManager>::Result_t operator()(DocumentManager);
+};
+
+struct OpenDocument
+{
+  Component<DocumentManager>::Result_t operator()(DocumentManager);
+};
+
+struct LoadDocument
+{
+  std::string path;
+
+  Component<DocumentManager>::Result_t operator()(DocumentManager);
+};
+
+struct LoadDone
+{
+  DocumentManager::DocumentId id;
+  std::string contents;
+
+  Component<DocumentManager>::Result_t operator()(DocumentManager);
+};
+
+}
+}
+
+#endif

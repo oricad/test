@@ -1,27 +1,16 @@
-name: Qt
-
+name: Build and test
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-  workflow_dispatch:
-  
+  workflow-dispatch:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    
-      - name: Cache Qt
-        id: cache-qt
-        uses: actions/cache@v1
-        with:
-          path: ../Qt
-          key: QtCache
-
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v2
-        with:
-          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: echo "Installing"
+      - name: Build
+        run: |
+          cmake -GNinja -DCMAKE_BUILD_TYPE:String=Debug

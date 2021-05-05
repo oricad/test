@@ -1,0 +1,129 @@
+# SPDX-License-Identifier: CC0-1.0
+#
+# Copyright 2021 Simon Marynissen <marynissen.simon@gmail.com>
+
+AccessModifierOffset: -2
+AlignAfterOpenBracket: AlwaysBreak
+#AlignConsecutiveAssignments: None
+#AlignConsecutiveBitFields: None
+#AlignConsecutiveMacros: None
+#AlignConsecutiveDeclarations: None
+AlignEscapedNewlines: Left
+# AlignOperands: DontAlign
+AlignOperands: false
+AlignTrailingComments: false
+AllowAllArgumentsOnNextLine: true
+AllowAllConstructorInitializersOnNextLine: true
+AllowAllParametersOfDeclarationOnNextLine: true
+AllowShortBlocksOnASingleLine: Empty
+AllowShortCaseLabelsOnASingleLine: false
+#AllowShortEnumsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLambdasOnASingleLine: Inline
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: false
+AlwaysBreakTemplateDeclarations: Yes
+BinPackArguments: true
+BinPackParameters: true
+#BitFieldColonSpacing: Both
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: true
+  AfterControlStatement: MultiLine
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: false
+  AfterStruct: true
+  AfterExternBlock: true
+  BeforeCatch: false
+  BeforeElse: false
+#  BeforeLambdaBody: false
+#  BeforeWhile: false
+  IndentBraces: false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeBraces: Custom
+#BreakBeforeConceptDeclarations: true
+BreakBeforeTernaryOperators: true
+BreakConstructorInitializers: BeforeComma
+BreakInheritanceList: BeforeComma
+BreakStringLiterals: true
+ColumnLimit: 80
+CompactNamespaces: false
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+ConstructorInitializerIndentWidth: 2
+ContinuationIndentWidth: 2
+Cpp11BracedListStyle: true
+DeriveLineEnding: false
+DerivePointerAlignment: false
+#EmptyLineBeforeAccessModifier: Always
+FixNamespaceComments: false
+IncludeBlocks: Regroup
+IncludeCategories:
+  # project headers in ""
+  - Regex: '".*"'
+    Priority: 1
+  # project headers in <>
+  - Regex: '<oricad\/.*>'
+    Priority: 2
+  # CGAL headers
+  - Regex: '<CGAL\/.*'
+    Priority: 3
+  # Qt headers without .h
+  - Regex: '<Q[A-Za-z0-9\/\-_]*>'
+    Priority: 4
+  # Qt headers with .h
+  - Regex: '<Q[A-Za-z0-9\/\-_]*\.h>'
+    Priority: 5
+  # Other dependency headers
+  - Regex: '<[A-Za-z0-9\/\-_]+\..*>'
+    Priority: 6
+  # system headers
+  - Regex: '<[A-Za-z0-9\/\-_]+>'
+    Priority: 7
+#IndentCaseBlocks: false
+IndentCaseLabels: true
+#IndentExternBlock: Indent
+IndentGotoLabels: true
+IndentPPDirectives: AfterHash
+#IndentRequires: false
+IndentWidth: 2
+IndentWrappedFunctionNames: false
+KeepEmptyLinesAtTheStartOfBlocks: false
+Language: Cpp
+MaxEmptyLinesToKeep: 2
+NamespaceIndentation: None
+PointerAlignment: Left
+ReflowComments: true
+#SortIncludes: CaseInsensitive
+SortIncludes: true
+SortUsingDeclarations: false
+SpaceAfterLogicalNot: false
+SpaceAfterTemplateKeyword: true
+SpaceBeforeAssignmentOperators: true
+#SpaceBeforeCaseColon: false
+SpaceBeforeCpp11BracedList: false
+SpaceBeforeCtorInitializerColon: true
+SpaceBeforeInheritanceColon: true
+SpaceBeforeParens: ControlStatements
+SpaceBeforeRangeBasedForLoopColon: true
+SpaceBeforeSquareBrackets: false
+SpaceInEmptyBlock: false
+SpaceInEmptyParentheses: false
+SpacesBeforeTrailingComments: 2
+SpacesInAngles: false
+SpacesInCStyleCastParentheses: false
+SpacesInContainerLiterals: false
+#SpacesInLineCommentsPrefix:
+#  Maximum: 1
+#  Minimum: 1
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+#Standard: Cpp17
+Standard: Cpp11
+TabWidth: 2
+UseTab: Never
