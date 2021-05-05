@@ -1,6 +1,6 @@
 name: Build and test
 on:
-  workflow-dispatch:
+  workflow_dispatch:
     branches:
       - main
 jobs:
