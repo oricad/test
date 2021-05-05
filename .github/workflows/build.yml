@@ -13,8 +13,13 @@ jobs:
         run: echo "Installing"
       - name: Install Ninja
         run: sudo apt-get update && sudo apt-get install -y ninja-build
+      - name: Install vcpkg
+        uses: lukka/run-vcpkg@v7
+        with:
+          setupOnly: true
       - name: Install Microsoft GSL
-        run: sudo apt-get update && sudo apt-get install libmsgsl-dev
+        run: |
+          $VCPKG_ROOT/vcpkg install ms-gsl
       - name: Install Qt
         run: sudo apt-get update && sudo apt-get install -y qtdeclarative5-dev
       - name: Build
