@@ -17,6 +17,7 @@ jobs:
         uses: lukka/run-vcpkg@v7
         with:
           setupOnly: true
+          vcpkgGitCommitId: e8dbfcf6797a270ed5be8550248f7fe4fe5dec79
       - name: Install Microsoft GSL
         run: |
           $VCPKG_ROOT/vcpkg install ms-gsl
