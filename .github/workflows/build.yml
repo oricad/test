@@ -13,6 +13,8 @@ jobs:
         run: echo "Installing"
       - name: Install Ninja
         run: sudo apt-get update && sudo apt-get install -y ninja-build
+      - name: Install Microsoft GSL
+        run: sudo apt-get update && sudo apt-get install libmsgsl-dev
       - name: Install Qt
         run: sudo apt-get update && sudo apt-get install -y qtdeclarative5-dev
       - name: Build
