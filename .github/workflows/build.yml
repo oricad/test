@@ -23,6 +23,8 @@ jobs:
           $VCPKG_ROOT/vcpkg install ms-gsl
       - name: Install Qt
         run: sudo apt-get update && sudo apt-get install -y qtdeclarative5-dev
+      - name: Check env
+        run: env
       - name: Build
         run: |
           cmake -GNinja -DCMAKE_BUILD_TYPE:String=Debug
