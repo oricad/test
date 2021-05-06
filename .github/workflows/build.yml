@@ -15,14 +15,14 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y ninja-build
       - name: Install Microsoft GSL
         run: |
-          ${VCPKG_INSTALLATION_ROOT}/vcpkg integrate install \
-          && ${VCPKG_INSTALLATION_ROOT}/vcpkg install ms-gsl
+          "${VCPKG_INSTALLATION_ROOT}"/vcpkg integrate install \
+          && "${VCPKG_INSTALLATION_ROOT}"/vcpkg install ms-gsl
       - name: Install Qt
         run: sudo apt-get update && sudo apt-get install -y qtdeclarative5-dev
       - name: Check env
         run: env
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
-      #- name: Build
-       # run: |
-        #  cmake -GNinja -DCMAKE_BUILD_TYPE:String=Debug
+      - name: Build
+        run: |
+          cmake -GNinja -DCMAKE_BUILD_TYPE:String=Debug -DCMAKE_PREFIX_PATH="${VCPKG_INSTALLATION_ROOT}/installed/x64-linux"
