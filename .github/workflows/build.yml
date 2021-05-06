@@ -15,7 +15,8 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y ninja-build
       - name: Install Microsoft GSL
         run: |
-          ${VCPKG_INSTALLATION_ROOT}/vcpkg install ms-gsl
+          ${VCPKG_INSTALLATION_ROOT}/vcpkg integrate install \
+          && ${VCPKG_INSTALLATION_ROOT}/vcpkg install ms-gsl
       - name: Install Qt
         run: sudo apt-get update && sudo apt-get install -y qtdeclarative5-dev
       - name: Check env
