@@ -13,18 +13,15 @@ jobs:
         run: echo "Installing"
       - name: Install Ninja
         run: sudo apt-get update && sudo apt-get install -y ninja-build
-      - name: Install vcpkg
-        uses: lukka/run-vcpkg@v7
-        with:
-          setupOnly: true
-          vcpkgGitCommitId: e8dbfcf6797a270ed5be8550248f7fe4fe5dec79
       - name: Install Microsoft GSL
         run: |
-          $VCPKG_ROOT/vcpkg install ms-gsl
+          ${VCPKG_INSTALLATION_ROOT}/vcpkg install ms-gsl
       - name: Install Qt
         run: sudo apt-get update && sudo apt-get install -y qtdeclarative5-dev
       - name: Check env
         run: env
-      - name: Build
-        run: |
-          cmake -GNinja -DCMAKE_BUILD_TYPE:String=Debug
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+      #- name: Build
+       # run: |
+        #  cmake -GNinja -DCMAKE_BUILD_TYPE:String=Debug
