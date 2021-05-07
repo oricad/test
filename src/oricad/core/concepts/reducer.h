@@ -20,6 +20,8 @@
 #ifndef INCLUDED_ORICAD_CORE_REDUCER
 #define INCLUDED_ORICAD_CORE_REDUCER
 
+#include <oricad/core/export.h>
+
 #include <lager/util.hpp>
 
 #include <variant>
@@ -28,10 +30,10 @@ namespace oricad {
 namespace core {
 
 template <typename Result, typename Model, typename Actions>
-struct Reducer;
+struct ORICAD_CORE_EXPORT Reducer;
 
 template <typename Result, typename Model, typename... Actions>
-struct Reducer<Result, Model, std::variant<Actions...>>
+struct ORICAD_CORE_EXPORT Reducer<Result, Model, std::variant<Actions...>>
 {
   static Result update(Model model, std::variant<Actions...> action)
   {

@@ -22,12 +22,13 @@
 
 #include <oricad/core/configuration.h>
 #include <oricad/core/documentmanager.h>
+#include <oricad/core/export.h>
 #include <oricad/core/preferences.h>
 
 namespace oricad {
 namespace core {
 
-struct AppData
+struct ORICAD_CORE_EXPORT AppData
 {
   Configuration configuration;
   Preferences preferences;

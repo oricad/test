@@ -20,7 +20,9 @@
 #ifndef INCLUDED_ORICAD_CORE_CONFIGURATION
 #define INCLUDED_ORICAD_CORE_CONFIGURATION
 
-struct Configuration
+#include <oricad/core/export.h>
+
+struct ORICAD_CORE_EXPORT Configuration
 {};
 
 #endif

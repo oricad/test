@@ -29,7 +29,7 @@ include(Catch)
 add_subdirectory(core)
 
 set(qtComponents Core Widgets Qml Quick QuickControls2 Concurrent) #Quick3D
-find_package(Qt5 5.15 COMPONENTS ${qtComponents} REQUIRED)
+find_package(Qt5 5.12 COMPONENTS ${qtComponents} REQUIRED)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)

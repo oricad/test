@@ -22,6 +22,7 @@
 
 #include <oricad/core/concepts/aggregatedreducer.h>
 #include <oricad/core/concepts/concept.h>
+#include <oricad/core/export.h>
 
 #include <type_traits>
 
@@ -29,7 +30,7 @@ namespace oricad {
 namespace core {
 
 template <typename Model, typename... Concepts>
-struct AggregatedConcept
+struct ORICAD_CORE_EXPORT AggregatedConcept
   : Concept<
       Model, std::variant<typename Concepts::Action...>,
       Model,  // std::result_of_t<&AggregatedReducer<Model,

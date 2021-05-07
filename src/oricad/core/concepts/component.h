@@ -20,11 +20,13 @@
 #ifndef INCLUDED_ORICAD_CORE_COMPONENT
 #define INCLUDED_ORICAD_CORE_COMPONENT
 
+#include <oricad/core/export.h>
+
 namespace oricad {
 namespace core {
 
 template <typename Model, typename Action, typename Result, typename Reducer>
-struct FullComponent
+struct ORICAD_CORE_EXPORT FullComponent
 {
   using Model_t = Model;
   using Action_t = Action;
@@ -33,7 +35,7 @@ struct FullComponent
 };
 
 template <typename Model>
-struct Component;
+struct ORICAD_CORE_EXPORT Component;
 
 }
 }

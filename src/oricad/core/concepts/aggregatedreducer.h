@@ -20,6 +20,8 @@
 #ifndef INCLUDED_ORICAD_CORE_AGGREGATEDREDUCER
 #define INCLUDED_ORICAD_CORE_AGGREGATEDREDUCER
 
+#include <oricad/core/export.h>
+
 #include <lager/util.hpp>
 
 #include <variant>
@@ -28,7 +30,7 @@ namespace oricad {
 namespace core {
 
 template <typename Model, typename... Concepts>
-struct AggregatedReducer
+struct ORICAD_CORE_EXPORT AggregatedReducer
 {
   static auto
   update(Model model, std::variant<typename Concepts::Action...> action)

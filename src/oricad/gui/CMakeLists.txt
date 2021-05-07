@@ -19,12 +19,12 @@ add_library(Oricad_Gui SHARED)
 
 target_link_libraries(Oricad_Gui
   PUBLIC Oricad::Core
-  PUBLIC Qt::Widgets
-  PUBLIC Qt::Quick
-  PUBLIC Qt::QuickControls2
-  PUBLIC Qt::Qml
+  PUBLIC Qt5::Widgets
+  PUBLIC Qt5::Quick
+  PUBLIC Qt5::QuickControls2
+  PUBLIC Qt5::Qml
   #PUBLIC Qt::Quick3D
-  PUBLIC Qt::Concurrent
+  PUBLIC Qt5::Concurrent
 )
 
 include(GenerateExportHeader)
@@ -48,8 +48,8 @@ add_library(Oricad::Gui ALIAS Oricad_Gui)
 
 target_sources(Oricad_Gui
   PUBLIC
-    recentitemsmenu.cpp
-    recentitemsmenu.h
+    #recentitemsmenu.cpp
+    #recentitemsmenu.h
     #settingsitem.cpp
     #settingsitem.h
     qtdocumentioservice.cpp

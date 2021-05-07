@@ -21,13 +21,14 @@
 #define INCLUDED_ORICAD_CORE_DOCUMENTIOSERVICE
 
 #include <oricad/core/document.h>
+#include <oricad/core/export.h>
 
 #include <string>
 
 namespace oricad {
 namespace core {
 
-class DocumentIOService
+class ORICAD_CORE_EXPORT DocumentIOService
 {
 public:
   virtual ~DocumentIOService() {}

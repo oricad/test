@@ -36,8 +36,9 @@ int main(int argc, char** argv)
 
   // qmlRegisterUncreatableType<oricad::gui::RecentItem>("Oricad", 1, 0,
   // "RecentItem", "");
-  qRegisterMetaType<oricad::gui::RecentItem*>("RecentItem*");
-  qmlRegisterType<oricad::gui::RecentItemsModel>("Oricad", 1, 0, "RecentItems");
+  // qRegisterMetaType<oricad::gui::RecentItem*>("RecentItem*");
+  // qmlRegisterType<oricad::gui::RecentItemsModel>("Oricad", 1, 0,
+  // "RecentItems");
 
   engine.load(QUrl(QStringLiteral("qrc:///qml/main.qml"), QUrl::StrictMode));
   return QApplication::exec();

@@ -20,6 +20,7 @@
 #ifndef INCLUDED_ORICAD_CORE_DOCUMENT
 #define INCLUDED_ORICAD_CORE_DOCUMENT
 
+#include <oricad/core/export.h>
 #include <oricad/core/file.h>
 
 #include <string>
@@ -27,7 +28,7 @@
 namespace oricad {
 namespace core {
 
-struct Document
+struct ORICAD_CORE_EXPORT Document
 {
   File from;
   std::string contents;

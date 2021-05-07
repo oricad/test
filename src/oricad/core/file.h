@@ -20,6 +20,8 @@
 #ifndef INCLUDED_ORICAD_CORE_FILE
 #define INCLUDED_ORICAD_CORE_FILE
 
+#include <oricad/core/export.h>
+
 #include <immer/box.hpp>
 
 #include <string>
@@ -28,7 +30,7 @@
 namespace oricad {
 namespace core {
 
-struct TemporaryFile
+struct ORICAD_CORE_EXPORT TemporaryFile
 {
   std::string name;
   std::string contents;
@@ -36,7 +38,7 @@ struct TemporaryFile
 
 bool operator==(const TemporaryFile& lhs, const TemporaryFile& rhs);
 
-struct RegularFile
+struct ORICAD_CORE_EXPORT RegularFile
 {
   std::string path;
   std::string contents;
@@ -44,7 +46,7 @@ struct RegularFile
 
 bool operator==(const RegularFile& lhs, const RegularFile& rhs);
 
-struct SavingFile
+struct ORICAD_CORE_EXPORT SavingFile
 {
   std::string path;
   std::string oldContents;
@@ -53,7 +55,7 @@ struct SavingFile
 
 bool operator==(const SavingFile& lhs, const SavingFile& rhs);
 
-struct SavingTemporaryFile
+struct ORICAD_CORE_EXPORT SavingTemporaryFile
 {
   std::string name;
   std::string contents;
@@ -61,7 +63,7 @@ struct SavingTemporaryFile
 
 bool operator==(const SavingTemporaryFile& lhs, const SavingTemporaryFile& rhs);
 
-struct LoadingFile
+struct ORICAD_CORE_EXPORT LoadingFile
 {
   std::string path;
 };

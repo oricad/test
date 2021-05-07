@@ -20,12 +20,14 @@
 #ifndef INCLUDED_ORICAD_CORE_CONCEPT
 #define INCLUDED_ORICAD_CORE_CONCEPT
 
+#include <oricad/core/export.h>
+
 namespace oricad {
 namespace core {
 
 template <
   typename Model_, typename Action_, typename Result_, typename Reducer_>
-struct Concept
+struct ORICAD_CORE_EXPORT Concept
 {
   using Model = Model_;
   using Action = Action_;

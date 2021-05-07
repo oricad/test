@@ -24,6 +24,7 @@
 #include <oricad/core/concepts/reducer.h>
 #include <oricad/core/document.h>
 #include <oricad/core/documentioservice.h>
+#include <oricad/core/export.h>
 
 #include <immer/map.hpp>
 #include <lager/context.hpp>
@@ -45,7 +46,7 @@ struct NewDocument;
 struct DocumentManager;
 
 template <>
-struct Component<DocumentManager>
+struct ORICAD_CORE_EXPORT Component<DocumentManager>
 {
   using Model_t = DocumentManager;
   using Action_t = std::variant<
@@ -59,7 +60,7 @@ struct Component<DocumentManager>
   using Context_t = lager::context<Action_t, Deps_t>;
 };
 
-struct DocumentManager
+struct ORICAD_CORE_EXPORT DocumentManager
 {
   using DocumentId = int;
   using Documents = immer::map<DocumentId, Document>;
@@ -71,7 +72,7 @@ struct DocumentManager
 };
 
 
-struct SaveDocument
+struct ORICAD_CORE_EXPORT SaveDocument
 {
   DocumentManager::DocumentId id;
 
@@ -84,7 +85,7 @@ struct SaveDocument
   saveRegularFileEffect(std::string contents, std::string path);
 };
 
-struct SaveDocumentAs
+struct ORICAD_CORE_EXPORT SaveDocumentAs
 {
   DocumentManager::DocumentId id;
   std::optional<std::string> path;
@@ -92,38 +93,38 @@ struct SaveDocumentAs
   Component<DocumentManager>::Result_t operator()(DocumentManager);
 };
 
-struct SaveDone
+struct ORICAD_CORE_EXPORT SaveDone
 {
   DocumentManager::DocumentId id;
 
   Component<DocumentManager>::Result_t operator()(DocumentManager);
 };
 
-struct CloseDocument
+struct ORICAD_CORE_EXPORT CloseDocument
 {
   DocumentManager::DocumentId id;
 
   Component<DocumentManager>::Result_t operator()(DocumentManager);
 };
 
-struct NewDocument
+struct ORICAD_CORE_EXPORT NewDocument
 {
   Component<DocumentManager>::Result_t operator()(DocumentManager);
 };
 
-struct OpenDocument
+struct ORICAD_CORE_EXPORT OpenDocument
 {
   Component<DocumentManager>::Result_t operator()(DocumentManager);
 };
 
-struct LoadDocument
+struct ORICAD_CORE_EXPORT LoadDocument
 {
   std::string path;
 
   Component<DocumentManager>::Result_t operator()(DocumentManager);
 };
 
-struct LoadDone
+struct ORICAD_CORE_EXPORT LoadDone
 {
   DocumentManager::DocumentId id;
   std::string contents;

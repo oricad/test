@@ -22,12 +22,14 @@
 
 #include <oricad/core/concepts/basicreducer.h>
 #include <oricad/core/concepts/concept.h>
+#include <oricad/core/export.h>
 
 namespace oricad {
 namespace core {
 
 template <typename Model, typename Action>
-struct BasicConcept : Concept<Model, Action, Model, BasicReducer<Model, Action>>
+struct ORICAD_CORE_EXPORT BasicConcept
+  : Concept<Model, Action, Model, BasicReducer<Model, Action>>
 {};
 
 }

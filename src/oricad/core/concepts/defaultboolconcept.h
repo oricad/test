@@ -21,13 +21,14 @@
 #define INCLUDED_ORICAD_CORE_DEFAULTBOOLCONCEPT
 
 #include <oricad/core/concepts/defaultconcept.h>
+#include <oricad/core/export.h>
 
 #include <variant>
 
 namespace oricad {
 namespace core {
 
-struct Toggle
+struct ORICAD_CORE_EXPORT Toggle
 {
   bool operator()(bool model)
   {
@@ -35,7 +36,7 @@ struct Toggle
   }
 };
 
-struct SetTrue
+struct ORICAD_CORE_EXPORT SetTrue
 {
   bool operator()(bool model)
   {
@@ -43,7 +44,7 @@ struct SetTrue
   }
 };
 
-struct SetFalse
+struct ORICAD_CORE_EXPORT SetFalse
 {
   bool operator()(bool model)
   {
@@ -52,7 +53,7 @@ struct SetFalse
 };
 
 template <>
-struct DefaultConcept<bool>
+struct ORICAD_CORE_EXPORT DefaultConcept<bool>
   : public BasicConcept<
       bool, std::variant<SetValue<bool>, Toggle, SetTrue, SetFalse>>
 {};

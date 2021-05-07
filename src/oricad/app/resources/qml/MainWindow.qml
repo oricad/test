@@ -23,7 +23,7 @@ import QtQuick.Controls 1.4
 //import QtQuick3D 1.15
 //import QtQuick3D.Helpers 1.0
 
-import Oricad 1.0
+//import Oricad 1.0
 
 ApplicationWindow {
     visibility: "Maximized"
@@ -33,7 +33,7 @@ ApplicationWindow {
     color: "pink"
 
     menuBar: MenuBar {
-        Menu {
+        /*Menu {
             title: qsTr("&File")
             Menu {
                 id: recent
@@ -56,7 +56,7 @@ ApplicationWindow {
                     }
                 }
             }
-        }
+        }*/
         Menu {
             title: qsTr("&Edit")
         }
@@ -65,7 +65,7 @@ ApplicationWindow {
         }
     }
 
-    RecentItems {
+   /* RecentItems {
         id: recentItems
     }
 
@@ -142,7 +142,7 @@ ApplicationWindow {
         Label {
             text: "Change max"
         }
-    }
+    }*/
 
     /*View3D {
         id: view

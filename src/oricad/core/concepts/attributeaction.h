@@ -20,13 +20,15 @@
 #ifndef INCLUDED_ORICAD_CORE_ATTRIBUTEACTION
 #define INCLUDED_ORICAD_CORE_ATTRIBUTEACTION
 
+#include <oricad/core/export.h>
+
 namespace oricad {
 namespace core {
 
 template <
   typename Model, typename Attribute, Attribute Model::*attribute,
   typename Concept>
-struct AttributeAction
+struct ORICAD_CORE_EXPORT AttributeAction
 {
   typename Concept::Action attributeAction;
 

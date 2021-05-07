@@ -20,6 +20,8 @@
 #ifndef INCLUDED_ORICAD_CORE_BASICREDUCER
 #define INCLUDED_ORICAD_CORE_BASICREDUCER
 
+#include <oricad/core/export.h>
+
 #include <lager/util.hpp>
 
 #include <variant>
@@ -28,7 +30,7 @@ namespace oricad {
 namespace core {
 
 template <typename Model, typename Actions>
-struct BasicReducer
+struct ORICAD_CORE_EXPORT BasicReducer
 {
   static auto update(Model model, Actions action)
   {
@@ -37,7 +39,7 @@ struct BasicReducer
 };
 
 template <typename Model, typename... Actions>
-struct BasicReducer<Model, std::variant<Actions...>>
+struct ORICAD_CORE_EXPORT BasicReducer<Model, std::variant<Actions...>>
 {
   static auto update(Model model, std::variant<Actions...> action)
   {

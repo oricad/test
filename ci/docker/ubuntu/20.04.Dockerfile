@@ -12,7 +12,7 @@ RUN wget "https://cmake.org/files/v3.20/cmake-3.20.2-linux-x86_64.sh" \
 && rm cmake-3.20.2-linux-x86_64.sh
 
 
-FROM environment AS dependencies
+FROM environment AS development
 RUN git clone https://github.com/catchorg/Catch2.git \
 # && git --git-dir=Catch2/.git checkout -f version
 && cmake -GNinja -SCatch2 -BCatch2/build \
@@ -72,10 +72,13 @@ RUN git clone https://github.com/KDAB/KDDockWidgets.git \
 && cmake --build KDDockWidgets/build --target install \
 && rm -rf KDDockWidgets
 
+VOLUME "/oricad"
+WORKDIR "/oricad"
 
-FROM dependencies AS development
-WORKDIR /home/oricad
-COPY . .
+
+#FROM dependencies AS development
+#WORKDIR /home/oricad
+#COPY . .
 #
 #FROM development AS build
 #RUN cmake -version

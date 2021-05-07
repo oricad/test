@@ -22,12 +22,13 @@
 
 #include <oricad/core/concepts/aggregatedconcept.h>
 #include <oricad/core/concepts/attributeconcept.h>
+#include <oricad/core/export.h>
 
 namespace oricad {
 namespace core {
 
 template <typename Model, auto... attributes>
-struct AggregatedAttributesConcept
+struct ORICAD_CORE_EXPORT AggregatedAttributesConcept
   : AggregatedConcept<Model, AttributeConcept<attributes>...>
 {};
 

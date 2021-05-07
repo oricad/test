@@ -22,15 +22,16 @@
 
 #include <oricad/core/concepts/attributeaction.h>
 #include <oricad/core/concepts/defaultconcept.h>
+#include <oricad/core/export.h>
 
 namespace oricad {
 namespace core {
 
 template <auto attribute>
-struct DefaulAttributeConceptHelper;
+struct ORICAD_CORE_EXPORT DefaulAttributeConceptHelper;
 
 template <typename Model, typename Attribute, Attribute Model::*attribute>
-struct DefaulAttributeConceptHelper<attribute>
+struct ORICAD_CORE_EXPORT DefaulAttributeConceptHelper<attribute>
 {
   using type = DefaultConcept<Attribute>;
 };
@@ -42,19 +43,19 @@ using DefaulAttributeConceptHelper_t =
 template <
   typename Model, typename Attribute, Attribute Model::*attribute,
   typename Concept = DefaultConcept<Attribute>>
-struct AttributeConceptHelper
+struct ORICAD_CORE_EXPORT AttributeConceptHelper
   : BasicConcept<Model, AttributeAction<Model, Attribute, attribute, Concept>>
 {};
 
 template <
   auto attribute, typename Concept = DefaulAttributeConceptHelper_t<attribute>>
-struct AttributeConcept
+struct ORICAD_CORE_EXPORT AttributeConcept
 {};
 
 template <
   typename Model, typename Attribute, Attribute Model::*attribute,
   typename Concept>
-struct AttributeConcept<attribute, Concept>
+struct ORICAD_CORE_EXPORT AttributeConcept<attribute, Concept>
   : AttributeConceptHelper<Model, Attribute, attribute, Concept>
 {};
 
