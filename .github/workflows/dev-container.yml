@@ -1,11 +1,20 @@
-name: Build and push dev-container
+name: dev-container
 on:
   workflow_dispatch:
     branches:
       - main
+  push:
+    branches:
+      - main
+    paths:
+      - ci/docker/
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-20.04]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -29,12 +38,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ci/docker/ubuntu/20.04.Dockerfile
+          file: ci/docker/${{ matrix.os }}.Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/oricad-dev:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/oricad-dev:${{ matrix.os }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
-
