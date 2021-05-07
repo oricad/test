@@ -76,12 +76,12 @@ RUN git clone https://github.com/KDAB/KDDockWidgets.git \
 FROM dependencies AS development
 WORKDIR /home/oricad
 COPY . .
+#
+#FROM development AS build
+#RUN cmake -version
+#RUN cmake -S. -Bbuild
+#RUN cmake --build build --target all
 
-FROM development AS build
-RUN cmake -version
-RUN cmake -S. -Bbuild
-RUN cmake --build build --target all
 
-
-FROM build AS test
-RUN ctest
+#FROM build AS test
+#RUN ctest
