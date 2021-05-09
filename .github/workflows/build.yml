@@ -9,7 +9,7 @@ jobs:
     container:
       image: oricad/oricad-dev:ubuntu-20.04
       volumes:
-        - $(pwd):/oricad
+        - ${{ github.workspace }}:/oricad
     steps:
       - name: Checkout
         uses: actions/checkout@v2
