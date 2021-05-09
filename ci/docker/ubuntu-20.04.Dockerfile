@@ -75,6 +75,8 @@ RUN git clone https://github.com/KDAB/KDDockWidgets.git \
 VOLUME "/oricad"
 WORKDIR "/oricad"
 
+ENTRYPOINT ["/bin/sh", "-c"]
+
 
 #FROM dependencies AS development
 #WORKDIR /home/oricad
