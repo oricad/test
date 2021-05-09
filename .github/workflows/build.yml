@@ -6,16 +6,20 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-20.04]
     container:
-      image: oricad/oricad-dev:ubuntu-20.04
+      image: oricad/oricad-dev:${{ matrix.os }}
       volumes:
         - ${{ github.workspace }}:/oricad
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: build and test
+      - name: build
         run: |
           cmake -GNinja -S. -Bbuild \
-          && cmake --build build --target all \
-          && cd build \
-          && ctest
+          && cmake --build build --target all
+      - name: test
+        run: |
+          cd build && ctest
