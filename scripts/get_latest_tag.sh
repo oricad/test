@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 # Copyright 2021 Simon Marynissen <marynissen.simon@gmail.com>
@@ -15,28 +17,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-name: Build and test
-on:
-  workflow_dispatch:
-    branches:
-      - main
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [ubuntu-20.04]
-    container:
-      image: oricad/oricad-dev:${{ matrix.os }}
-      volumes:
-        - ${{ github.workspace }}:/oricad
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: build
-        run: |
-          cmake -GNinja -S. -Bbuild \
-          && cmake --build build --target all
-      - name: test
-        run: |
-          cd build && ctest
+git tag | sort -r --version-sort | head -n1
