@@ -1,0 +1,75 @@
+# SPDX-License-Identifier: CC0-1.0
+#
+# Copyright 2021 Simon Marynissen <marynissen.simon@gmail.com>
+
+branches: main
+repositoryUrl: 'https://github.com/oricad/oricad'
+plugins:
+  - '@semantic-release/commit-analyzer'
+  - '@semantic-release/release-notes-generator'
+  - '@semantic-release/github'
+  - '@semantic-release/git'
+  - '@semantic-release/changelog'
+#  - '@semantic-release/exec'
+preset: conventionalcommits
+analyzeCommits:
+  releaseRules:
+    - breaking: true
+      release: major
+    - revert: true
+      release: patch
+    - type: style
+      release: patch
+    - type: refactor
+      release: minor
+    - type: perf
+      release: patch
+    - type: fix
+      release: patch
+    - type: feat
+      release: minor
+    - type: docs
+      release: false
+    - type: test
+      release: false
+    - type: security
+      release: minor
+    - type: ci
+      release: patch
+    - type: build
+      release: patch
+    - type: i18n
+      release: patch
+    - type: typo
+      release: patch
+    - type: chore
+      release: patch
+presetConfig:
+  types:
+    - type: style
+      section: Improving structure or format of code
+    - type: refactor
+      section: Refactoring code
+    - type: perf
+      section: Improving performance
+    - type: fix
+      section: Fixing a bug
+    - type: feat
+      section: Introducing new feature
+    - type: docs
+      section: Documentation
+    - type: test
+      section: Adding tests
+    - type: security
+      section: Fixing security issues
+    - type: ci
+      section: Continuous integration
+    - type: build
+      section: Changes to build system
+    - type: i18n
+      section: Internationalization and localization
+    - type: typo
+      section: Fixing a typo
+    - type: chore
+      section: Used for chores, usually automated
+
