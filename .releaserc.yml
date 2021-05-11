@@ -13,8 +13,8 @@ plugins:
         - 'BREAKING'
   - '@semantic-release/release-notes-generator'
   - - '@semantic-release/github'
-    - releasedLabels:
-      - 'releases/${nextRelease.gitTag}'
+    - assets:
+      - dist/oricad*.deb
   - - '@semantic-release/git'
     - assets:
       - docs/CHANGELOG.md
