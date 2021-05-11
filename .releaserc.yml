@@ -21,52 +21,58 @@ verifyConditions:
   - path: '@semantic-release/changelog'
 
 analyzeCommits:
-  releaseRules:
-    - breaking: true
-      release: major
-    - revert: true
-      release: patch
-    - type: style
-      release: patch
-    - type: refactor
-      release: minor
-    - type: perf
-      release: patch
-    - type: fix
-      release: patch
-    - type: feat
-      release: minor
-    - type: docs
-      release: false
-    - type: test
-      release: false
-    - type: security
-      release: minor
-    - type: ci
-      release: patch
-    - type: build
-      release: patch
-    - type: i18n
-      release: patch
-    - type: typo
-      release: patch
-    - type: chore
-      release: patch
-    - type: license
-      release: false
+  - path: '@semantic-release/commit-analyzer'
+    releaseRules:
+      - breaking: true
+        release: major
+      - revert: true
+        release: patch
+      - type: style
+        release: patch
+      - type: refactor
+        release: minor
+      - type: perf
+        release: patch
+      - type: fix
+        release: patch
+      - type: feat
+        release: minor
+      - type: docs
+        release: false
+      - type: test
+        release: false
+      - type: security
+        release: minor
+      - type: ci
+        release: patch
+      - type: build
+        release: patch
+      - type: i18n
+        release: patch
+      - type: typo
+        release: patch
+      - type: chore
+        release: patch
+      - type: license
+        release: false
+
+verifyRelease:
+  - null
+
 generateNotes:
-  writerOpts:
-    title: Changelog
-    groupBy: type
-    commitGroupsSort:
-      - feat
-      - fix
-      - perf
-      - security
-      - i18n
-    commitsSort:
-      - subject
-      - scope
+  - path: '@semantic-release/release-notes-generator'
+    writerOpts:
+      title: Changelog
+      groupBy: type
+      commitGroupsSort:
+        - feat
+        - fix
+        - perf
+        - security
+        - i18n
+      commitsSort:
+        - subject
+        - scope
 prepare:
   - path: '@semantic-release/changelog'
     changelogTitle: '# Changelog'
