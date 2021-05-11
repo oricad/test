@@ -80,6 +80,10 @@ prepare:
   - path: '@semantic-release/exec'
     prepareCmd: 'scripts/set-version.sh ${nextRelease.version}'
   - path: '@semantic-release/git'
+    assets:
+      - VERSION
+      - docs/CHANGELOG.md
+    message: 'chore(release): ${nextRelease.gitTag} [skip ci]\n\n${nextRelease.notes}'
 publish:
   - path: '@semantic-release/github'
 success:
