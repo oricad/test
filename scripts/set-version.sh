@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 # Copyright 2021 Simon Marynissen <marynissen.simon@gmail.com>
@@ -15,30 +17,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-cmake_minimum_required(VERSION 3.20)
-
-
-file(READ VERSION ORICAD_VER)
-string(STRIP "${ORICAD_VER}" ORICAD_VER)
-project(ORICAD
-  VERSION ${ORICAD_VER}
-  DESCRIPTION "Computer-aided origami design tools"
-  HOMEPAGE_URL "oricad.org"
-  LANGUAGES CXX
-)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED YES)
-set(CMAKE_CXX_EXTENSIONS NO)
-
-#include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
-
-#set(CMAKE_CXX_CPPCHECK "cppcheck")
-#set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=*")
-#set(CMAKE_CXX_CPPLINT "cpplint")
-#set(CMAKE_CXX_INCLUDE_WHAT_YOU_USE "iwyu")
-# http://www.stablecoder.ca/2018/10/30/full-cmake-helper-suite.html
-
-enable_testing()
-
-add_subdirectory(src/oricad)
+echo "$1" > VERSION

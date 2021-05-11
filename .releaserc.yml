@@ -18,14 +18,15 @@ plugins:
   - - '@semantic-release/git'
     - assets:
       - docs/CHANGELOG.md
-      message: 'chore(release): v${nextRelease.version}\n\n${nextRelease.notes}'
+      message: 'chore(release): ${nextRelease.gitTag}\n\n${nextRelease.notes}'
 #    - assets:
 #      - docs/CHANGELOG.md
 #    - message: 'chore(release): v${nextRelease.version}\n\n${nextRelease.notes}'
   - - '@semantic-release/changelog'
     - changelogTitle: '# Changelog'
       changelogFile: docs/CHANGELOG.md
-#  - '@semantic-release/exec'
+  - - '@semantic-release/exec'
+    - prepareCmd: 'set-version.sh ${nextRelease.version}'
 preset: conventionalcommits
 
 analyzeCommits:
