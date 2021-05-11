@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.1](https://github.com/oricad/test/compare/v1.1.0...v1.1.1) (2021-05-11)
+
+
+### Bug fixes
+
+* changelog license ([b8b2024](https://github.com/oricad/test/commit/b8b202497a359f81eed4e51d593652bd63b8b00a))
+
 ## [1.1.0](https://github.com/oricad/test/compare/v1.0.2...v1.1.0) (2021-05-11)
 
 
