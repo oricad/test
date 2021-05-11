@@ -12,6 +12,7 @@ plugins:
   - '@semantic-release/changelog'
 #  - '@semantic-release/exec'
 preset: conventionalcommits
+
 analyzeCommits:
   releaseRules:
     - breaking: true
@@ -44,12 +45,17 @@ analyzeCommits:
       release: patch
     - type: chore
       release: patch
+generateNotes:
+  writerOpts:
+    groupBy: type
 presetConfig:
   types:
     - type: style
       section: Improving structure or format of code
+      hidden: true
     - type: refactor
       section: Refactoring code
+      hidden: true
     - type: perf
       section: Improving performance
     - type: fix
@@ -58,18 +64,24 @@ presetConfig:
       section: Introducing new feature
     - type: docs
       section: Documentation
+      hidden: true
     - type: test
       section: Adding tests
+      hidden: true
     - type: security
       section: Fixing security issues
     - type: ci
       section: Continuous integration
+      hidden: true
     - type: build
       section: Changes to build system
+      hidden: true
     - type: i18n
       section: Internationalization and localization
     - type: typo
       section: Fixing a typo
+      hidden: true
     - type: chore
       section: Used for chores, usually automated
+      hidden: true
 
