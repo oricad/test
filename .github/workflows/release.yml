@@ -43,4 +43,5 @@ jobs:
             @semantic-release/exec
             conventional-changelog-conventionalcommits
         env:
+          GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE_ACTION_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
