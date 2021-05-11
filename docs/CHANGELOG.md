@@ -1,3 +1,12 @@
+# Changelog
+
+## [1.1.0](https://github.com/oricad/test/compare/v1.0.2...v1.1.0) (2021-05-11)
+
+
+### Features
+
+* **docs:** add code of conduct ([cb41381](https://github.com/oricad/test/commit/cb413814cb20fbcb1167bafbd9fcb32652e4652e))
+
 <!--
 SPDX-License-Identifier: CC-BY-4.0
 
