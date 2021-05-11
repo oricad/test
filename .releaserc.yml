@@ -2,33 +2,23 @@
 #
 # Copyright 2021 Simon Marynissen <marynissen.simon@gmail.com>
 
-branches: main
+branches:
+  - main
 repositoryUrl: 'git@github.com:oricad/test.git'
-plugins:
-  - - '@semantic-release/commit-analyzer'
-    - parserOpts:
-      noteKeywords:
-        - 'BREAKING CHANGE'
-        - 'BREAKING CHANGES'
-        - 'BREAKING'
-  - '@semantic-release/release-notes-generator'
-  - - '@semantic-release/github'
-    - assets:
-      - dist/oricad*.deb
-  - - '@semantic-release/git'
-    - assets:
-      - VERSION
-      - docs/CHANGELOG.md
-      message: 'chore(release): ${nextRelease.gitTag}\n\n${nextRelease.notes}'
-#    - assets:
-#      - docs/CHANGELOG.md
-#    - message: 'chore(release): v${nextRelease.version}\n\n${nextRelease.notes}'
-  - - '@semantic-release/changelog'
-    - changelogTitle: '# Changelog'
-      changelogFile: docs/CHANGELOG.md
-  - - '@semantic-release/exec'
-    - prepareCmd: 'scripts/set-version.sh ${nextRelease.version}'
 preset: conventionalcommits
+tagFormat: 'v${version}'
+plugins:
+  - '@semantic-release/commit-analyzer'
+  - '@semantic-release/release-notes-generator'
+  - '@semantic-release/changelog'
+  - '@semantic-release/exec'
+  - '@semantic-release/git'
+  - '@semantic-release/github'
+
+verifyConditions:
+  - path: '@semantic-release/github'
+  - path: '@semantic-release/git'
+  - path: '@semantic-release/changelog'
 
 analyzeCommits:
   releaseRules:
@@ -77,6 +67,19 @@ generateNotes:
     commitsSort:
       - subject
       - scope
+prepare:
+  - path: '@semantic-release/changelog'
+    changelogTitle: '# Changelog'
+    changelogFile: docs/CHANGELOG.md
+  - path: '@semantic-release/exec'
+    prepareCmd: 'scripts/set-version.sh ${nextRelease.version}'
+  - path: '@semantic-release/git'
+publish:
+  - path: '@semantic-release/github'
+success:
+  - '@semantic-release/github'
+fail:
+  - '@semantic-release/github'
 
 presetConfig:
   types:
@@ -117,4 +120,3 @@ presetConfig:
     - type: license
       section: License information
       hidden: true
-
