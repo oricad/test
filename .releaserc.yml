@@ -5,11 +5,26 @@
 branches: main
 repositoryUrl: 'git@github.com:oricad/test.git'
 plugins:
-  - '@semantic-release/commit-analyzer'
+  - - '@semantic-release/commit-analyzer'
+    - parserOpts:
+      noteKeywords:
+        - 'BREAKING CHANGE'
+        - 'BREAKING CHANGES'
+        - 'BREAKING'
   - '@semantic-release/release-notes-generator'
-  - '@semantic-release/github'
-  - '@semantic-release/git'
-  - '@semantic-release/changelog'
+  - - '@semantic-release/github'
+    - releasedLabels:
+      - 'releases/${nextRelease.gitTag}'
+  - - '@semantic-release/git'
+    - assets:
+      - docs/CHANGELOG.md
+      message: 'chore(release): v${nextRelease.version}\n\n${nextRelease.notes}'
+#    - assets:
+#      - docs/CHANGELOG.md
+#    - message: 'chore(release): v${nextRelease.version}\n\n${nextRelease.notes}'
+  - - '@semantic-release/changelog'
+    - changelogTitle: '# Changelog'
+      changelogFile: docs/CHANGELOG.md
 #  - '@semantic-release/exec'
 preset: conventionalcommits
 
@@ -47,21 +62,32 @@ analyzeCommits:
       release: patch
 generateNotes:
   writerOpts:
+    title: Changelog
     groupBy: type
+    commitGroupsSort:
+      - feat
+      - fix
+      - perf
+      - security
+      - i18n
+    commitsSort:
+      - subject
+      - scope
+
 presetConfig:
   types:
     - type: style
-      section: Improving structure or format of code
+      section: Improving style
       hidden: true
     - type: refactor
       section: Refactoring code
       hidden: true
     - type: perf
-      section: Improving performance
+      section: Performance fixes
     - type: fix
-      section: Fixing a bug
+      section: Bug fixes
     - type: feat
-      section: Introducing new feature
+      section: Features
     - type: docs
       section: Documentation
       hidden: true
@@ -69,7 +95,7 @@ presetConfig:
       section: Adding tests
       hidden: true
     - type: security
-      section: Fixing security issues
+      section: Security
     - type: ci
       section: Continuous integration
       hidden: true
