@@ -30,7 +30,8 @@ jobs:
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v2
-      - uses: bahmutov/npm-install@v1
+      - run: npm install
+      - run: npm install -g semantic-release
       - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
