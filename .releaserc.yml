@@ -17,6 +17,7 @@ plugins:
       - dist/oricad*.deb
   - - '@semantic-release/git'
     - assets:
+      - VERSION
       - docs/CHANGELOG.md
       message: 'chore(release): ${nextRelease.gitTag}\n\n${nextRelease.notes}'
 #    - assets:
@@ -26,7 +27,7 @@ plugins:
     - changelogTitle: '# Changelog'
       changelogFile: docs/CHANGELOG.md
   - - '@semantic-release/exec'
-    - prepareCmd: 'set-version.sh ${nextRelease.version}'
+    - prepareCmd: 'scripts/set-version.sh ${nextRelease.version}'
 preset: conventionalcommits
 
 analyzeCommits:
