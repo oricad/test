@@ -2,3 +2,7 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Oricad
 Upstream-Contact: Simon Marynissen <marynissen.simon@gmail.com>
 Source: https://www.oricad.org
+
+Files: VERSION
+Copyright: Simon Marynissen
+License: CC0-1.0
