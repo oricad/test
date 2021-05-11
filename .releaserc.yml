@@ -60,6 +60,8 @@ analyzeCommits:
       release: patch
     - type: chore
       release: patch
+    - type: license
+      release: false
 generateNotes:
   writerOpts:
     title: Changelog
@@ -109,5 +111,8 @@ presetConfig:
       hidden: true
     - type: chore
       section: Used for chores, usually automated
+      hidden: true
+    - type: license
+      section: License information
       hidden: true
 
