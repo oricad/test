@@ -3,7 +3,7 @@
 # Copyright 2021 Simon Marynissen <marynissen.simon@gmail.com>
 
 branches: main
-repositoryUrl: 'https://github.com/oricad/oricad'
+repositoryUrl: 'git@github.com:oricad/test.git'
 plugins:
   - '@semantic-release/commit-analyzer'
   - '@semantic-release/release-notes-generator'
