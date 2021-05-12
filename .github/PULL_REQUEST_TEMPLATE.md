@@ -4,6 +4,6 @@
 
 
 
-> :exclamation: Please review the [contribution guidelines](../../docs/CONTRIBUTING.md) for detailed contributing guidelines.
+> :exclamation: Please review the [contribution guidelines](../docs/CONTRIBUTING.md) for detailed contributing guidelines.
 
 **PLEASE REMOVE THIS TEMPLATE BEFORE SUBMITTING**
