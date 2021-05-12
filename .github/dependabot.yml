@@ -11,4 +11,3 @@ updates:
       time: '01:23'
     commit-message:
       prefix: ci
-      scope: dep
