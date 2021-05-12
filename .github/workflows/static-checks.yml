@@ -34,4 +34,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: REUSE compliance
-        uses: fsfe/reuse-action@v1
+        uses: fsfe/reuse-action@v1.1
