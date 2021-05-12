@@ -29,4 +29,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Markdown link check
-        uses: gaurav-nelson/github-action-markdown-link-check@v1.0.12
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
