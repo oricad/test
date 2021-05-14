@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.2.1](https://github.com/oricad/test/compare/v1.2.0...v1.2.1) (2021-05-14)
+
+
+### Bug fixes
+
+* add license cli option ([4e505ff](https://github.com/oricad/test/commit/4e505fff1f824641b3f3445897eb6258da0e35c1))
+
 ## [1.2.0](https://github.com/oricad/test/compare/v1.1.14...v1.2.0) (2021-05-14)
 
 
