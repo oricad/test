@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/oricad/test/compare/v1.1.14...v1.2.0) (2021-05-14)
+
+
+### Features
+
+* add basic cli options ([8e500b2](https://github.com/oricad/test/commit/8e500b2fa842e50c6bd86a365302eaf524622d80))
+
 ### [1.1.14](https://github.com/oricad/test/compare/v1.1.13...v1.1.14) (2021-05-14)
 
 
