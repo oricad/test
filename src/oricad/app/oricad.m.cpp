@@ -36,7 +36,10 @@ static void processCommandLineOptions(const QCoreApplication& app)
   QCommandLineOption versionOption{
     {QStringLiteral("v"), QStringLiteral("version")},
     QCoreApplication::translate("cli", "Display version information")};
-  parser.addOption(versionOption);
+  QCommandLineOption licenseOption{
+    QStringLiteral("license"),
+    QCoreApplication::translate("cli", "Display license information")};
+  parser.addOptions({versionOption, licenseOption});
   parser.process(app);
 
   if (parser.isSet(versionOption)) {
@@ -45,6 +48,12 @@ static void processCommandLineOptions(const QCoreApplication& app)
                    .arg(QCoreApplication::applicationVersion())
                    .toStdString()
               << std::endl;
+    exit(0);
+  }
+  if (parser.isSet(licenseOption)) {
+    std::cout
+      << QCoreApplication::translate("cli", "GPL 3.0 or later").toStdString()
+      << std::endl;
     exit(0);
   }
   // const QStringList options = parser.optionNames();
