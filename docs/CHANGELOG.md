@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.14](https://github.com/oricad/test/compare/v1.1.13...v1.1.14) (2021-05-14)
+
+
+### Bug fixes
+
+* documents are in map with proper key type ([e7f8cb7](https://github.com/oricad/test/commit/e7f8cb73fece56a9fd53e8bf1fcc0ca10db571d2))
+
 ### [1.1.13](https://github.com/oricad/test/compare/v1.1.12...v1.1.13) (2021-05-12)
 
 ### [1.1.12](https://github.com/oricad/test/compare/v1.1.11...v1.1.12) (2021-05-12)
