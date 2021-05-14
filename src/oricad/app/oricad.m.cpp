@@ -26,9 +26,41 @@
 //#include <oricad/gui/recentitemsmenu.h>
 #include "../gui/recentitemsmenu.h"
 
+static void processCommandLineOptions(const QCoreApplication& app)
+{
+  QCommandLineParser parser;
+  // text shown by --help option
+  parser.setApplicationDescription("help message");
+  parser.addHelpOption();
+  // not using built-in addVersionOption, because we want to show more.
+  QCommandLineOption versionOption{
+    {QStringLiteral("v"), QStringLiteral("version")},
+    QCoreApplication::translate("cli", "Display version information")};
+  parser.addOption(versionOption);
+  parser.process(app);
+
+  if (parser.isSet(versionOption)) {
+    // should provide more info, like which graphics backend is used
+    std::cout << QCoreApplication::translate("cli", "Oricad %1")
+                   .arg(QCoreApplication::applicationVersion())
+                   .toStdString()
+              << std::endl;
+    exit(0);
+  }
+  // const QStringList options = parser.optionNames();
+  // const QStringList positionalArguments = parser.positionalArguments();
+}
+
+
 int main(int argc, char** argv)
 {
   QApplication app(argc, argv, QApplication::ApplicationFlags);
+  QCoreApplication::setApplicationName(QStringLiteral("Oricad"));
+  QCoreApplication::setApplicationVersion("1.0");
+  QCoreApplication::setOrganizationDomain(QStringLiteral("oricad.org"));
+  QCoreApplication::setOrganizationName(QStringLiteral("Oricad"));
+
+  processCommandLineOptions(app);
 
   QQuickStyle::setStyle("Fusion");
   QQmlApplicationEngine engine(nullptr);
