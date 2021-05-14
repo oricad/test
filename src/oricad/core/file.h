@@ -32,7 +32,6 @@ namespace core {
 
 struct ORICAD_CORE_EXPORT TemporaryFile
 {
-  std::string name;
   std::string contents;
 };
 
@@ -40,7 +39,6 @@ bool operator==(const TemporaryFile& lhs, const TemporaryFile& rhs);
 
 struct ORICAD_CORE_EXPORT RegularFile
 {
-  std::string path;
   std::string contents;
 };
 
@@ -48,7 +46,6 @@ bool operator==(const RegularFile& lhs, const RegularFile& rhs);
 
 struct ORICAD_CORE_EXPORT SavingFile
 {
-  std::string path;
   std::string oldContents;
   std::string newContents;
 };
@@ -57,16 +54,13 @@ bool operator==(const SavingFile& lhs, const SavingFile& rhs);
 
 struct ORICAD_CORE_EXPORT SavingTemporaryFile
 {
-  std::string name;
   std::string contents;
 };
 
 bool operator==(const SavingTemporaryFile& lhs, const SavingTemporaryFile& rhs);
 
 struct ORICAD_CORE_EXPORT LoadingFile
-{
-  std::string path;
-};
+{};
 
 bool operator==(const LoadingFile& lhs, const LoadingFile& rhs);
 

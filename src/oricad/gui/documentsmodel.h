@@ -76,7 +76,7 @@ public:
 private:
   core::Component<core::DocumentManager>::Context_t context_;
 
-  LAGER_QT_READER(core::DocumentManager::DocumentId, activeDocument);
+  LAGER_QT_READER(core::DocumentId, activeDocument);
   LAGER_QT_READER(core::DocumentManager::Documents, documents);
 };
 

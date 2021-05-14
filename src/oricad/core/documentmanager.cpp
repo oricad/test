@@ -29,6 +29,12 @@
 namespace oricad {
 namespace core {
 
+
+bool operator==(const DocumentId& lhs, const DocumentId& rhs)
+{
+  return lhs.path == rhs.path && lhs.temporary == rhs.temporary;
+}
+
 DocumentManager DocumentManager::setDocument(DocumentId id, Document document)
 {
   documents = documents.set(id, document);
@@ -49,16 +55,16 @@ Result SaveDocument::operator()(DocumentManager manager)
   }
   if (std::holds_alternative<TemporaryFile>(document->from)) {
     TemporaryFile file = std::get<TemporaryFile>(document->from);
-    SavingTemporaryFile newFile{file.name, file.contents};
+    SavingTemporaryFile newFile{file.contents};
     return {
       manager.setDocument(id, Document{newFile, document->contents}),
       saveTemporaryFileEffect()};
   } else if (std::holds_alternative<RegularFile>(document->from)) {
     RegularFile file = std::get<RegularFile>(document->from);
-    SavingFile newFile{file.path, file.contents};
+    SavingFile newFile{file.contents};
     return {
       manager.setDocument(id, Document{newFile, document->contents}),
-      saveRegularFileEffect(document->contents, file.path)};
+      saveRegularFileEffect(document->contents, id.path)};
   }
 
   std::cout << "Trying to save a loading/saving file" << std::endl;
@@ -105,7 +111,7 @@ Result SaveDocumentAs::operator()(DocumentManager manager)
       ? std::get<TemporaryFile>(document->from).contents
       : std::get<RegularFile>(document->from).contents;
 
-    SavingFile newFile{path.value(), oldContents, document->contents};
+    SavingFile newFile{oldContents, document->contents};
     return {
       DocumentManager{
         manager.documents.set(id, Document{newFile, document->contents}),
@@ -131,7 +137,7 @@ Result SaveDone::operator()(DocumentManager manager)
   }
 
   SavingFile file = std::get<SavingFile>(document->from);
-  RegularFile newFile{file.path, file.newContents};
+  RegularFile newFile{file.newContents};
 
   return {
     DocumentManager{
@@ -176,20 +182,18 @@ Result OpenDocument::operator()(DocumentManager manager)
 
 Result LoadDocument::operator()(DocumentManager manager)
 {
-  // generate a new id
-  // TODO: very rudimentary id generation
-  static DocumentManager::DocumentId id = 0;
-  ++id;
-  LoadingFile file{path};
+  DocumentId id{path, false};
 
-  // "" should std::null_opt or empty list or whatever
+  LoadingFile file{};
+
   return {
     DocumentManager{
       manager.documents.set(id, Document{file, ""}), manager.activeDocumentId},
-    [this](auto&& ctx) {
+    [this, id](auto&& ctx) {
       DocumentIOService& io = lager::get<DocumentIOService&>(ctx);
       ctx.dispatch(LoadDone{id, io.loadDocumentContents(path)});
     }};
+  return {manager, lager::noop};
 }
 
 Result LoadDone::operator()(DocumentManager manager)
@@ -199,7 +203,7 @@ Result LoadDone::operator()(DocumentManager manager)
     return {manager, lager::noop};
   }
   LoadingFile file = std::get<LoadingFile>(document->from);
-  RegularFile newFile{file.path, contents};
+  RegularFile newFile{contents};
 
   return {
     DocumentManager{
@@ -210,13 +214,15 @@ Result LoadDone::operator()(DocumentManager manager)
 
 Result NewDocument::operator()(DocumentManager manager)
 {
-  static DocumentManager::DocumentId id = 1000;
-  ++id;
+  static int number = 0;
+  ++number;
+  DocumentId id{immer::box<std::string>{"untitled" + number}, true};
   return {
     DocumentManager{
-      manager.documents.set(id, Document{TemporaryFile{"Untitled", ""}, ""}),
+      manager.documents.set(id, Document{TemporaryFile{""}, ""}),
       manager.activeDocumentId},
     lager::noop};
+  return {manager, lager::noop};
 }
 
 }

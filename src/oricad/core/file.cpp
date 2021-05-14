@@ -24,29 +24,29 @@ namespace core {
 
 bool operator==(const TemporaryFile& lhs, const TemporaryFile& rhs)
 {
-  return lhs.name == rhs.name && lhs.contents == rhs.contents;
+  return lhs.contents == rhs.contents;
 }
 
 bool operator==(const RegularFile& lhs, const RegularFile& rhs)
 {
-  return lhs.path == rhs.path && lhs.contents == rhs.contents;
+  return lhs.contents == rhs.contents;
 }
 
 bool operator==(const SavingFile& lhs, const SavingFile& rhs)
 {
-  return lhs.path == rhs.path && lhs.oldContents == rhs.oldContents
+  return lhs.oldContents == rhs.oldContents
     && lhs.newContents == rhs.newContents;
 }
 
 bool operator==(const SavingTemporaryFile& lhs, const SavingTemporaryFile& rhs)
 {
-  return lhs.name == rhs.name && lhs.contents == rhs.contents;
+  return lhs.contents == rhs.contents;
 }
 
 
 bool operator==(const LoadingFile& lhs, const LoadingFile& rhs)
 {
-  return lhs.path == rhs.path;
+  return true;
 }
 
 }

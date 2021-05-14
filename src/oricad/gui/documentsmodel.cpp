@@ -50,12 +50,15 @@ QVariant DocumentsModel::data(const QModelIndex& index, int role) const
     return QVariant();
   }
 
-
+  // TODO: using a map is essential, but it doesn't fit into the model view
+  // architecture of Qt, so we will need something different than a
+  // QAbstractListModel for the documents.
   QVariant result;
-  result.setValue(DocumentItem(
-    LAGER_QT(documents)[index.row()][lager::lenses::or_default].make()));
+  // result.setValue(DocumentItem(
+  // LAGER_QT(documents)[it[index.row()]][lager::lenses::or_default].make()));
   return result;
 }
+
 
 QVariant DocumentsModel::headerData(
   int section, Qt::Orientation orientation, int role) const

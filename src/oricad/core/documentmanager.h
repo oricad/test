@@ -26,9 +26,13 @@
 #include <oricad/core/documentioservice.h>
 #include <oricad/core/export.h>
 
+#include <immer/box.hpp>
+#include <immer/flex_vector.hpp>
 #include <immer/map.hpp>
 #include <lager/context.hpp>
 
+#include <functional>
+#include <map>
 #include <string>
 
 namespace oricad {
@@ -60,9 +64,22 @@ struct ORICAD_CORE_EXPORT Component<DocumentManager>
   using Context_t = lager::context<Action_t, Deps_t>;
 };
 
+struct ORICAD_CORE_EXPORT DocumentId
+{
+  immer::box<std::string> path;
+  bool temporary = false;
+};
+
+bool operator==(const DocumentId& lhs, const DocumentId& rhs);
+
+struct DocumentKeyValue
+{
+  DocumentId key;
+  Document value;
+};
+
 struct ORICAD_CORE_EXPORT DocumentManager
 {
-  using DocumentId = int;
   using Documents = immer::map<DocumentId, Document>;
 
   Documents documents;
@@ -74,7 +91,7 @@ struct ORICAD_CORE_EXPORT DocumentManager
 
 struct ORICAD_CORE_EXPORT SaveDocument
 {
-  DocumentManager::DocumentId id;
+  DocumentId id;
 
 
   Component<DocumentManager>::Result_t operator()(DocumentManager);
@@ -87,7 +104,7 @@ struct ORICAD_CORE_EXPORT SaveDocument
 
 struct ORICAD_CORE_EXPORT SaveDocumentAs
 {
-  DocumentManager::DocumentId id;
+  DocumentId id;
   std::optional<std::string> path;
 
   Component<DocumentManager>::Result_t operator()(DocumentManager);
@@ -95,14 +112,14 @@ struct ORICAD_CORE_EXPORT SaveDocumentAs
 
 struct ORICAD_CORE_EXPORT SaveDone
 {
-  DocumentManager::DocumentId id;
+  DocumentId id;
 
   Component<DocumentManager>::Result_t operator()(DocumentManager);
 };
 
 struct ORICAD_CORE_EXPORT CloseDocument
 {
-  DocumentManager::DocumentId id;
+  DocumentId id;
 
   Component<DocumentManager>::Result_t operator()(DocumentManager);
 };
@@ -126,13 +143,28 @@ struct ORICAD_CORE_EXPORT LoadDocument
 
 struct ORICAD_CORE_EXPORT LoadDone
 {
-  DocumentManager::DocumentId id;
+  DocumentId id;
   std::string contents;
 
   Component<DocumentManager>::Result_t operator()(DocumentManager);
 };
 
 }
+}
+
+namespace std {
+
+template <>
+struct hash<oricad::core::DocumentId>
+{
+  std::size_t operator()(const oricad::core::DocumentId& id) const
+  {
+    std::size_t h1 = std::hash<immer::box<std::string>>{}(id.path);
+    std::size_t h2 = std::hash<bool>{}(id.temporary);
+    return h1 ^ (h2 << 1);
+  }
+};
+
 }
 
 #endif
