@@ -27,11 +27,8 @@ on:
       - ci/docker/
 
 jobs:
-  build:
+  build-linux:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [ubuntu-20.04]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -50,14 +47,18 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+# DOCKER_BUILDKIT=1 docker build --secret id=qt-account-email,src=<(printf myemail) --secret id=qt-account-password,src=<(printf mypassword) -f linux.Dockerfile .
       - name: Docker build and push
         id: docker_build
         uses: docker/build-push-action@v2.4.0
         with:
           context: .
-          file: ci/docker/${{ matrix.os }}.Dockerfile
+          file: ci/docker/linux.Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/oricad-dev:${{ matrix.os }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/oricad-dev-linux:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
+          secrets: |
+            "qt-account-email=${{ secrets.QT_ACCOUNT_EMAIL }}"
+            "qt-account-password=${{ secrets.QT_ACCOUNT_PASSWORD }}"

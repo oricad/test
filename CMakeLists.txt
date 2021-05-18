@@ -41,4 +41,13 @@ set(CMAKE_CXX_EXTENSIONS NO)
 
 enable_testing()
 
+include(GNUInstallDirs)
+set(CMAKE_INSTALL_DOCDIR ${CMAKE_INSTALL_DATAROOTDIR}/doc/${PROJECT_NAME})
+
+if(NOT WIN32 AND CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+  set(CMAKE_INSTALL_PREFIX "/opt/oricad.org/${PROJECT_NAME}")
+endif()
+
+
+
 add_subdirectory(src/oricad)

@@ -31,3 +31,5 @@ target_sources(oricad
     resources/qml/qml.qrc
     resources/images/images.qrc
 )
+
+install(TARGETS oricad)
