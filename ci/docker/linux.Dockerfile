@@ -31,7 +31,7 @@ RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test \
 && apt-get update -q \
 && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
 gcc-9 g++-9 \
-&& update-alternatives --install /usr/bin/gcc gcc /usr/bin/g++-9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-9 \
+&& update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-9 \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
