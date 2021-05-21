@@ -23,7 +23,15 @@ ENV PATH=/usr/local/bin:$PATH
 
 RUN apt-get update -q \
 && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
-wget ca-certificates unzip git build-essential \
+wget ca-certificates unzip git build-essential software-properties-common \
+&& apt-get clean \
+&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test \
+&& apt-get update -q \
+&& DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
+gcc-9 g++-9 \
+&& update-alternatives --install /usr/bin/gcc gcc /usr/bin/g++-9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-9 \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -65,9 +73,16 @@ RUN git clone https://github.com/microsoft/GSL.git -b 'v3.1.0' --depth 1 \
 
 RUN apt-get update -q \
 && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
-libgmp-dev libmpfr-dev libboost-dev \
+libgmp-dev libmpfr-dev \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# only headers are needed
+RUN wget https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.gz \
+&& tar xzvf boost_1_76_0.tar.gz \
+&& cp -R boost_1_76_0/boost /usr/include/ \
+&& rm boost_1_76_0.tar.gz \
+&& rm -rf boost_1_76_0
 
 RUN git clone https://github.com/CGAL/cgal.git -b 'v5.2.1' --depth 1 \
 && cmake -GNinja -Scgal -Bcgal/build -DCMAKE_BUILD_TYPE=Release \

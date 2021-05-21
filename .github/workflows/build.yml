@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v2
       - name: build
         run: |
-          cmake -GNinja -S. -Bbuild \
+          cmake -GNinja -S. -Bbuild -DCMAKE_PREFIX_PATH=/opt/Qt/5.15.2/gcc_64 \
           && cmake --build build --target all
       - name: test
         run: |
