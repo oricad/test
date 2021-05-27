@@ -1,5 +1,7 @@
 # Changelog
 
+### [1.2.5](https://github.com/oricad/test/compare/v1.2.4...v1.2.5) (2021-05-27)
+
 ### [1.2.4](https://github.com/oricad/test/compare/v1.2.3...v1.2.4) (2021-05-21)
 
 ### [1.2.3](https://github.com/oricad/test/compare/v1.2.2...v1.2.3) (2021-05-21)
