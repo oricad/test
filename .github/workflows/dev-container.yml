@@ -50,7 +50,7 @@ jobs:
 # DOCKER_BUILDKIT=1 docker build --secret id=qt-account-email,src=<(printf myemail) --secret id=qt-account-password,src=<(printf mypassword) -f linux.Dockerfile .
       - name: Docker build and push
         id: docker_build
-        uses: docker/build-push-action@v2.5.0
+        uses: docker/build-push-action@v3.1.1
         with:
           context: .
           file: ci/docker/linux.Dockerfile
